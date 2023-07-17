@@ -1,0 +1,16 @@
+<h2>Add Cart</h2>
+<form (submit)="onSubmit()">
+  <div>
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" [(ngModel)]="newCart.item" required>
+  </div>
+  <div>
+    <label for="total">Total:</label>
+    <input type="number" id="total" [(ngModel)]="newCart.total" name ="total" required>
+  </div>
+  <div>
+    <label for="price">Price:</label>
+    <input type="number" id="price" [(ngModel)]="newCart.price" name="price" required>
+  </div>
+  <button type="submit">Add</button>
+</form>

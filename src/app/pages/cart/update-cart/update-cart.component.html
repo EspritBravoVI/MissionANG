@@ -1,0 +1,16 @@
+<h2>Update Cart</h2>
+<form (submit)="onSubmit()">
+  <div>
+    <label for="item">Item:</label>
+    <input type="text" id="item" [(ngModel)]="cart.item" required>
+  </div>
+  <div>
+    <label for="total">Total:</label>
+    <input type="number" id="total" [(ngModel)]="cart.total" required>
+  </div>
+  <div>
+    <label for="price">Price:</label>
+    <input type="number" id="price" [(ngModel)]="cart.price" required>
+  </div>
+  <button type="submit">Update</button>
+</form>

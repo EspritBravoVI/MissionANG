@@ -1,0 +1,17 @@
+<h2>Cart List</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Item</th>
+    <th>Total</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cart of carts">
+    <td>{{ cart.item }}</td>
+    <td>{{ cart.total }}</td>
+    <td>{{ cart.price }}</td>
+  </tr>
+  </tbody>
+</table>
