@@ -28,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule,ReactiveFormsModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
