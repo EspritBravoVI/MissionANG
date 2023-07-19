@@ -38,7 +38,7 @@ export class MapsComponent implements OnInit {
         position: myLatlng,
         map: map,
         animation: google.maps.Animation.DROP,
-        title: 'Hello World!'
+        title: 'Event'
     });
 
     var contentString = '<div class="info-window-content"><h2>Argon Dashboard</h2>' +

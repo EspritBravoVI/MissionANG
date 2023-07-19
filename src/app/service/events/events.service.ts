@@ -7,7 +7,7 @@ import { Event } from '../../models/Event';
 })
 export class EventsService {
 
-  private apiUrl = 'http://localhost:8090/SpringMVC/carts'; // Replace with your API URL
+  private apiUrl = 'http://localhost:8090/SpringMVC/events'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +20,7 @@ export class EventsService {
     return this.http.get<Event>(url,{ observe: 'response' });
   }
 
-  addEvent(event: Event): Observable<HttpResponse<Event>> {
+  createEvent(event: Event): Observable<HttpResponse<Event>> {
     return this.http.post<Event>(this.apiUrl, event,{ observe: 'response' });
   }
 

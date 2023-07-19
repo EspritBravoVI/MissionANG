@@ -8,7 +8,6 @@ import { EventService } from 'src/app/event.service';
 })
 export class TablesComponent implements OnInit {
   events: Event[] = [];
-  latestEvents: Event[] = [];
   selectedLink:String="";
   event: Event = {
     title: '',
@@ -33,7 +32,7 @@ export class TablesComponent implements OnInit {
   ngOnInit(): void {
     
     this.getEvents();
-    this.getLatestEvents();
+    
     
   }
   
@@ -48,16 +47,7 @@ export class TablesComponent implements OnInit {
       }
     );
   }
-  getLatestEvents(): void {
-    this.eventService.getLatestEvents().subscribe(
-      (aaa: Event[]) => {
-        this.latestEvents = aaa;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+
   
 
   createEvent(event: Event): void {
