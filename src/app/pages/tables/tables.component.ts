@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { Event } from './Event';
 import { EventService } from 'src/app/event.service';
+
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.scss']
 })
 export class TablesComponent implements OnInit {
+  eventDetail !: FormGroup;
   events: Event[] = [];
   selectedLink:String="";
   event: Event = {

@@ -16,6 +16,8 @@ import {CartListComponent} from "./pages/cart/cart-list/cart-list.component";
 import {CartDetailComponent} from "./pages/cart/cart-detail/cart-detail.component";
 import {AddCartComponent} from "./pages/cart/add-cart/add-cart.component";
 import {UpdateCartComponent} from "./pages/cart/update-cart/update-cart.component";
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import {UpdateCartComponent} from "./pages/cart/update-cart/update-cart.componen
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
