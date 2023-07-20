@@ -13,17 +13,29 @@ private apiUrl = 'http://localhost:8090/SpringMVC/reactions'; // Replace with yo
         return this.http.get<Reaction[]>(this.apiUrl,{ observe: 'response' });
       }
 
-    getReactionById(id: string): Observable<HttpResponse<Reaction>> {
-          const url = `${this.apiUrl}/${id}`;
+    getReactionById(id: any): Observable<HttpResponse<Reaction>> {
+          const url = `${this.apiUrl}/getReactionById/${id}`;
           return this.http.get<Reaction>(url,{ observe: 'response' });
+      }
+    getReactionByCommentId(commentId: any): Observable<HttpResponse<Reaction>> {
+          const url = `${this.apiUrl}/getReactionByCommentId/${commentId}`;
+          return this.http.get<Reaction>(url,{ observe: 'response' });
+      }
+    getReactionByUserId(userId: any): Observable<HttpResponse<Reaction[]>> {
+          const url = `${this.apiUrl}/getReactionByUserId/${userId}`;
+          return this.http.get<Reaction[]>(url,{ observe: 'response' });
       }
 
     addReaction(reaction: Reaction): Observable<HttpResponse<Reaction>> {
         return this.http.post<Reaction>(this.apiUrl, recation,{ observe: 'response' });
       }
+    addReactionAndAssignToCommentAndUser(reaction: Reaction): Observable<HttpResponse<Reaction>> {
+    const url = `${this.apiUrl}/${commentId}/${userId}`;
+         return this.http.post<Reaction>(this.apiUrl, recation,{ observe: 'response' });
+       }
 
       updateReaction(recation: Reaction): Observable<HttpResponse<Reaction>> {
-        const url = `${this.apiUrl}/${reaction.id}`;
+        const url = `${this.apiUrl}/updateReaction`;
         return this.http.put<Reaction>(url, reaction,{ observe: 'response' });
       }
 

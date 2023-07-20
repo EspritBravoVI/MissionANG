@@ -15,17 +15,28 @@ private apiUrl = 'http://localhost:8090/SpringMVC/posts'; // Replace with your A
       return this.http.get<Post[]>(this.apiUrl,{ observe: 'response' });
     }
 
-  getPostById(id: string): Observable<HttpResponse<Post>> {
-        const url = `${this.apiUrl}/${id}`;
+  getPostById(id: any): Observable<HttpResponse<Post>> {
+        const url = `${this.apiUrl}/getPostById/${id}`;
         return this.http.get<Post>(url,{ observe: 'response' });
+    }
+  getPostByUserId(userId: any): Observable<HttpResponse<Post[]>> {
+         const url = `${this.apiUrl}/getPostByUserId/${userId}`;
+         return this.http.get<Post[]>(url,{ observe: 'response' });
+    }
+  getPostByCommentId(commentId: any): Observable<HttpResponse<Post>> {
+         const url = `${this.apiUrl}/getPostByCommentId/${commentId}`;
+         return this.http.get<Post>(url,{ observe: 'response' });
     }
 
   addPost(post: Post): Observable<HttpResponse<Post>> {
       return this.http.post<Post>(this.apiUrl, post,{ observe: 'response' });
     }
-
+  addPostAndAssignToUser(post: Post, idUser : any ): Observable<HttpResponse<Post>> {
+        const url = `${this.apiUrl}/${idUser}`;
+        return this.http.post<Post>(this.apiUrl, post,{ observe: 'response' });
+      }
     updatePost(post: Post): Observable<HttpResponse<Post>> {
-      const url = `${this.apiUrl}/${post.id}`;
+      const url = `${this.apiUrl}/updatePost`;
       return this.http.put<Post>(url, post,{ observe: 'response' });
     }
 
