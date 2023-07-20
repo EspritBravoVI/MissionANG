@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { Event } from './Event';
 import { EventService } from 'src/app/event.service';
+import { Router } from '@angular/router';
+import { AddCartComponent } from '../cart/add-cart/add-cart.component';
 
 @Component({
   selector: 'app-tables',
@@ -11,7 +13,7 @@ import { EventService } from 'src/app/event.service';
 export class TablesComponent implements OnInit {
   eventDetail !: FormGroup;
   events: Event[] = [];
-  selectedLink:String="";
+  //selectedLink:String="";
   event: Event = {
     title: '',
     description: '',
@@ -29,7 +31,7 @@ export class TablesComponent implements OnInit {
     products: [],
     user: undefined
   };
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private router:Router) { }
   
 
   ngOnInit(): void {
@@ -39,6 +41,14 @@ export class TablesComponent implements OnInit {
     
   }
   
+  // navigateToCreateEvent():void {
+  //   ()=>{this.router.navigate(['create-event'])}
+  // }
+
+  navigateToCreateEvent = function () {
+    this.router.navigate(['create-event']);
+};
+
 
   getEvents(): void {
     this.eventService.getAllEvents().subscribe(

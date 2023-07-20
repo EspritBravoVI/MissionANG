@@ -7,17 +7,17 @@ import {Transport} from "./Transport";
 
 export interface Event {
   id: number;
-  hostId: number;
-  supplierId: number;
+  hostId?: number;
+  supplierId?: number;
   location: string;
   dateEvent: Date;
   maxParticipants: number;
-  requestStatus: ReqStatus;
+   requestStatus?: ReqStatus;
   description: string;
-  participantsCount: number;
-  feedbacks: Feedback[];
-  reservations: Reservation[];
-  products: Product[];
-  customUser: CustomUser;
-  transport: Transport;
+  participantsCount?: number;
+  feedbacks?: Feedback[];
+  reservations?: Reservation[];
+  products?: Product[];
+  customUser?: CustomUser;
+  transport?: Transport;
 }

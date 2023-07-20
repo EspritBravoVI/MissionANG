@@ -17,6 +17,7 @@ import {CartDetailComponent} from "./pages/cart/cart-detail/cart-detail.componen
 import {AddCartComponent} from "./pages/cart/add-cart/add-cart.component";
 import {UpdateCartComponent} from "./pages/cart/update-cart/update-cart.component";
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddEventComponent } from './pages/events/add-event/add-event.component';
 
 
 
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AddEventComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
