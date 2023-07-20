@@ -11,8 +11,8 @@ private apiUrl = 'http://localhost:8090/SpringMVC/posts'; // Replace with your A
 
   constructor(private http: HttpClient) { }
 
-  getAllPosts(): Observable<HttpResponse<Post[]>> {
-      return this.http.get<Post[]>(this.apiUrl,{ observe: 'response' });
+  getAllPosts(): Observable<Post[]> {
+      return this.http.get<Post[]>(this.apiUrl);
     }
 
   getPostById(id: any): Observable<HttpResponse<Post>> {

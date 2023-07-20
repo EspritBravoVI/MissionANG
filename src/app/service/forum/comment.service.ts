@@ -10,8 +10,8 @@ private apiUrl = 'http://localhost:8090/SpringMVC/comments'; // Replace with you
 
   constructor(private http: HttpClient) { }
 
-  getAllComments(): Observable<HttpResponse<Comment[]>> {
-        return this.http.get<Comment[]>(this.apiUrl,{ observe: 'response' });
+  getAllComments(): Observable<Comment[]>{
+        return this.http.get<Comment[]>(this.apiUrl);
       }
 
     getCommentById(id: any): Observable<HttpResponse<Comment>> {
