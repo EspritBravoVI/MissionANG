@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/service/events/events.service';
 declare const google: any;
 
 @Component({
@@ -8,12 +9,25 @@ declare const google: any;
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventService: EventsService) { }
+
+  events: any =[];
+  LongLatCollection:any = [];
 
   ngOnInit() {
     let map = document.getElementById('map-canvas');
     let lat = map.getAttribute('data-lat');
     let lng = map.getAttribute('data-lng');
+
+    this.eventService.getAllEvent().subscribe(result => {
+      this.events = result;
+      console.log("events",this.events)
+    });
+
+    this.events.map(
+      (evt)=> this.LongLatCollection.push({id:evt.id,long:evt.longitude,lat:evt.latitude}) 
+      )
+    
 
     var myLatlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
