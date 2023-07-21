@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(
           (res) => {
             // Login successful, navigate to home page or desired route
-            console.log(res)
+            console.log(res);
+            this.router.navigate(['dashboard']);
           },
           error => {
             // Handle login error
             console.log(error)
+            alert("wrong email or password")
           }
         );
     }

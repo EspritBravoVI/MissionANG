@@ -10,6 +10,11 @@ export class TablesComponent implements OnInit {
   events: Event[] = [];
   latestEvents: Event[] = [];
   selectedLink:String="";
+
+  activated = false;
+  buttonLabel = 'NOT ACTIVATED';
+
+
   event: Event = {
     title: '',
     description: '',
@@ -28,15 +33,20 @@ export class TablesComponent implements OnInit {
     user: undefined
   };
   constructor(private eventService: EventService) { }
-  
+
 
   ngOnInit(): void {
-    
+
     this.getEvents();
     this.getLatestEvents();
-    
+
   }
-  
+
+  activateButton() {
+    this.activated = !this.activated;
+    this.buttonLabel = this.activated ? 'ACTIVATED' : 'NOT ACTIVATED';
+  }
+
 
   getEvents(): void {
     this.eventService.getAllEvents().subscribe(
@@ -58,7 +68,7 @@ export class TablesComponent implements OnInit {
       }
     );
   }
-  
+
 
   createEvent(event: Event): void {
     this.eventService.createEvent(event).subscribe(

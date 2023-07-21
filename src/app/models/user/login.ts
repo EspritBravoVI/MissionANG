@@ -1,8 +1,8 @@
 export class Login{
-    username! :string
+    email! :string
     password!: string
-    constructor(username, password){
+    constructor(email, password){
         this.password=password
-        this.username=username
+        this.email=email
     }
 }

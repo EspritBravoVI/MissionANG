@@ -7,7 +7,7 @@ import { Login } from 'src/app/models/user/login';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8040/api'; // Replace with your API endpoint
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
