@@ -30,9 +30,10 @@ private apiUrl = 'http://localhost:8090/SpringMVC/comments'; // Replace with you
     addComment(comment: Comment): Observable<HttpResponse<Comment>> {
         return this.http.post<Comment>(this.apiUrl, comment,{ observe: 'response' });
       }
-    addCommentAndAssignToPostAndUser(comment: Comment, idPost:any , idUser : any ): Observable<HttpResponse<Comment>> {
+    addCommentAndAssignToPostAndUser(comment: any, idPost:any , idUser : any ): Observable<HttpResponse<Comment>> {
          const url = `${this.apiUrl}/${idPost}/${idUser}`;
-         return this.http.post<Comment>(this.apiUrl, comment,{ observe: 'response' });
+         console.log(url);
+         return this.http.post<Comment>(url, comment,{ observe: 'response' });
         }
 
     updateComment(comment: Comment): Observable<HttpResponse<Comment>> {
