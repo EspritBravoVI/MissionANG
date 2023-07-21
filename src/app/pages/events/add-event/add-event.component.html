@@ -1,0 +1,60 @@
+<div class="header bg-gradient-pink pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <h5 class="card-title text-uppercase text-muted mb-0">Event List</h5>
+      <div class="row">
+        <div class="col-xl-3 col-lg-6"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h2>Create Event</h2>
+    <form (submit)="onSubmit()">
+      <div>
+        <label for="price">Price:</label>
+        <input
+          type="number"
+          id="price"
+          [(ngModel)]="newEvent.description"
+          name="price"
+          required
+        />
+      </div>
+      <div>
+        <label for="item">event location:</label>
+        <input
+          type="text"
+          id="item"
+          name="item"
+          [(ngModel)]="newEvent.location"
+          required
+        />
+      </div>
+      <div>
+        <label for="total">event Date:</label>
+        <input
+          type="date"
+          id="total"
+          [(ngModel)]="newEvent.dateEvent"
+          name="total"
+          required
+        />
+      </div>
+      <div>
+        <label for="price">Max participants:</label>
+        <input
+          type="number"
+          id="price"
+          [(ngModel)]="newEvent.maxParticipants"
+          name="price"
+          required
+        />
+      </div>
+      <button type="submit">Create Event</button>
+    </form>
+  </div>
+</div>

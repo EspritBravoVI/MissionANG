@@ -1,16 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from './Event';
-import { EventService } from 'src/app/event.service';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { Router } from '@angular/router';
+import { AddCartComponent } from '../cart/add-cart/add-cart.component';
+import { EventsService } from 'src/app/service/events/events.service';
+import { Event } from '../../models/Event';
+
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.scss']
 })
 export class TablesComponent implements OnInit {
-  events: Event[] = [];
-  latestEvents: Event[] = [];
-  selectedLink:String="";
-  event: Event = {
+  showNewEventForm: boolean = false;
+  eventToEdit: string;
+  eventDetail !: FormGroup;
+  // events: Event[] = [];
+  events!: any;
+  //selectedLink:String="";
+  // event: Event = {
+  //   title: '',
+  //   description: '',
+  //   location: '',
+  //   startDate: '',
+  //   endDate: '',
+  //   capacity: 0,
+  //   status: '',
+  //   category: '',
+  //   price: 0,
+  //   createdAt: '',
+  //   reservations: [],
+  //   transports: [],
+  //   feedbacks: [],
+  //   products: [],
+  //   user: undefined
+  // };
+
+  NewEvent: any = {
     title: '',
     description: '',
     location: '',
@@ -27,58 +52,60 @@ export class TablesComponent implements OnInit {
     products: [],
     user: undefined
   };
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventsService) { }
   
 
   ngOnInit(): void {
     
-    this.getEvents();
-    this.getLatestEvents();
+    // this.getEvents();
     
+    this.eventService.getAllEvent().subscribe(result => {
+      this.events = result;
+    });
   }
   
+  // navigateToCreateEvent():void {
+  //   ()=>{this.router.navigate(['create-event'])}
+  // }
 
-  getEvents(): void {
-    this.eventService.getAllEvents().subscribe(
-      (events: Event[]) => {
-        this.events = events;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-  getLatestEvents(): void {
-    this.eventService.getLatestEvents().subscribe(
-      (aaa: Event[]) => {
-        this.latestEvents = aaa;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+//   navigateToCreateEvent = function () {
+//     this.router.navigate(['create-event']);
+// };
+
+  showCreateNewEvent(confirm:boolean){
+    this.showNewEventForm = true;
+    if(confirm){
+      this.createEvent();
+      console.log('event',this.NewEvent);
+      this.showNewEventForm = false;
+      this.NewEvent;
+    }
   }
   
-
-  createEvent(event: Event): void {
-    this.eventService.createEvent(event).subscribe(
-      (createdEvent: Event) => {
-        this.events.push(createdEvent);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  selectEventToEdit(id: string){
+    this.eventToEdit = id;
   }
 
-  updateEvent(event: Event): void {
-    if (event.id !== undefined) {
-    this.eventService.updateEvent(event.id, event).subscribe(
-      (updatedEvent: Event) => {
-        const index = this.events.findIndex(e => e.id === updatedEvent.id);
-        if (index !== -1) {
-          this.events[index] = updatedEvent;
-        }
+  deleteEvent(id: number) {
+     if (id !== -1) {
+       this.eventService.deleteEvent(id).subscribe(
+         (events) => {
+         this.events = events;
+       },
+       (error) => {
+         console.log(error);
+       }
+     );
+   }
+ }
+
+   updateEvent(): void {
+    if (this.eventToEdit !== undefined) {
+    this.eventService.updateEvent(this.NewEvent,this.eventToEdit).subscribe(
+      () => {
+        this.eventService.getAllEvent().subscribe(result => {
+          this.events = result;
+        });
       },
       (error) => {
         console.log(error);
@@ -86,25 +113,71 @@ export class TablesComponent implements OnInit {
     );
   }}
 
-  deleteEvent(event: Event): void {
-    if (event.id !== undefined) {
-      this.eventService.deleteEvent(event.id).subscribe(
-        () => {
-        this.events = this.events.filter(e => e.id !== event.id);
-      },
-      (error) => {
-        console.log(error);
+ createEvent(): void {
+  this.eventService.createEvent(this.NewEvent).subscribe(
+    (createdEvent) => {
+      if(createdEvent){
+        this.events.push(createdEvent);
+        this.eventService.getAllEvent().subscribe(result => {
+          this.events = result;
+        });
       }
-    );
-  }
-}
-
-  saveEvent(): void {
-    if (this.event.id) {
-      this.updateEvent(this.event);
-    } else {
-      this.createEvent(this.event);
+    },
+    (error) => {
+      console.log(error);
     }
+  )
+}
+
+
+
+    // this.eventService.deleteEvent(id)
+    //   .subscribe(
+    //     data => {
+    //       this.events = this.events.filter(event => event.id !== id);
+    //     },
+    //     error => console.log(error));
+
+
+    // Find the index of the item with the specified ID
+    // const index = this.events.findIndex(item => item.id === id);
+
+    // // If the item with the specified ID is found, remove it from the array
+    // if (index !== -1) {
+    //   this.events.splice(index, 1);
+    // }
   }
 
-}
+//   getEvents(): void {
+//     this.eventService.getAllEvents().subscribe(
+//       (events: Event[]) => {
+//         this.events = events;
+//         console.log('events',events);
+//       },
+//       (error) => {
+//         console.log(error);
+//       }
+//     );
+//   }
+
+  // deleteEvent(event: Event): void {
+  //   if (event.id !== -1) {
+  //     this.eventService.deleteEvent(event[id].getId).subscribe(
+  //       () => {
+  //       this.events = this.events.filter(e => e.id !== event.id);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+// }
+
+//   saveEvent(): void {
+//     if (this.event.id) {
+//       this.updateEvent(this.event);
+//     } else {
+//       this.createEvent(this.event);
+//     }
+//   }
+

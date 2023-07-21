@@ -1,0 +1,24 @@
+.delete-event{
+    border: none;
+    background: none;
+    color: #e6093d;
+}
+.edit-event{
+    border: none;
+    background: none;
+    color: #2dce89;
+} 
+
+.form-elem{
+    margin-top: 10px;
+    label{
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    button{
+        margin-left: 15px;
+    }
+    input{
+        padding: 5px;
+    }
+}
