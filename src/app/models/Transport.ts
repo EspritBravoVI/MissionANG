@@ -6,5 +6,4 @@ export interface Transport {
   type: TypeTrans;
   nomSociete: string;
   event: Event;
-  reservations: Reservation[];
 }
