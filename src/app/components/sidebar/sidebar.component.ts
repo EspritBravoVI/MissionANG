@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/maps', title: 'Réservation',  icon:'ni-pin-3 text-orange', class: '' },
     { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/events', title: 'Events',  icon:'ni-bullet-list-67 text-red', class: '' },
+    { path: '/create-event',title: 'Create Event', icon:'ni-single-02 text-yellow', class: '' },
     { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
 ];

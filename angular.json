@@ -159,7 +159,6 @@
       }
     }
   },
-
   "cli": {
     "analytics": false
   }
