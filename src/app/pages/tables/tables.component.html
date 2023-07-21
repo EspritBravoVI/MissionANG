@@ -18,58 +18,94 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Events table</h3>
           <div ngbButtonLabel  placement="bottom-center">
-            <button class="btn btn-outline-success"type="button" (click)="navigateToCreateEvent();"  > Create Event</button>
+            <button class="btn btn-outline-success"type="button" (click)="showCreateNewEvent(false)" >Create Event</button>
+          </div>
+          <div *ngIf="showNewEventForm" class="row">
+            <div class="form-elem">
+              <label for="event">Event</label>
+              <input name="event" type="text" [(ngModel)]="NewEvent.title" >
+            </div>
+            <div class="form-elem">
+              <label for="Description">Description</label>
+              <input name="Description" type="text" [(ngModel)]="NewEvent.description">
+            </div>
+            <div class="form-elem">
+              <label for="Location">Location</label>
+              <input name="Location" type="text" [(ngModel)]="NewEvent.location">
+            </div>
+            <div class="form-elem">
+              <label for="Capacity">MAX PARTICIPANTS</label>
+              <input name="Capacity" type="text" [(ngModel)]="NewEvent.maxParticipants">
+            </div>
+            <!-- <div class="form-elem">
+              <label for="Reservations">Reservations</label>
+              <input name="Reservations" type="text" [(ngModel)]="NewEvent.reservations">
+            </div> -->
+            <div class="form-elem">
+              <button class="btn btn-outline-success" type="button" (click)="showCreateNewEvent(true)" > confirm </button>
+            </div>
+            <div class="form-elem">
+              <button class="btn btn-outline-danger" type="button" (click)="showCreateNewEvent(true)"  > cancel </button>
+            </div>
           </div>
         </div>
-         <!-- <div class="table-responsive" *ngFor="let event of events">  -->
-           <div class="table-responsive">
+       <div class="table-responsive"> 
+           
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Event</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Location</th>
-                <th scope="col">Capacity</th>
-                <th scope="col">Reservations</th>
+                <th scope="col">Max Participants</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="../assets/img/brand/argon-white.JPG">
-                    </a>
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">{{event.title}} event title</span>
+                <tr *ngFor="let event of events">
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                        <img alt="Image placeholder" src="../assets/img/brand/argon-white.JPG">
+                      </a>
+                     
                     </div>
-                  </div>
-                </th>
-                <td>
-                  {{event.description}} event description 
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    {{event.location}} event location
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    {{event.capacity}} event capacity
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    {{event.reservations}} event reservations
-                  </span>
-                </td>
-                <td class="text-center">
-                  <div ngbButtonLabel  placement="bottom-center">
-                    <a class="bu" href="javascript:void(0)">Delete</a>
-                  </div>
-                </td>
-            </tbody>
+                  </th>
+                  <td>
+                    <span *ngIf="eventToEdit != event.id">{{event.title}}</span>
+                    <input *ngIf="eventToEdit == event.id" type="text" [(ngModel)]="NewEvent.title">
+                  </td>
+                  <td>
+                    
+                      <span *ngIf="eventToEdit != event.id">{{event.description}}</span>
+                      <input *ngIf="eventToEdit == event.id" type="text" [(ngModel)]="NewEvent.description">
+                    
+                  </td>
+                  <td>
+                    
+                      <span *ngIf="eventToEdit != event.id">{{event.location}}</span>
+                      <input *ngIf="eventToEdit == event.id" type="text" [(ngModel)]="NewEvent.location">
+                    
+                  </td>
+                  <td>
+                    
+                      <span *ngIf="eventToEdit != event.id">{{event.maxParticipants}}</span>
+                      <input *ngIf="eventToEdit == event.id" type="text" [(ngModel)]="NewEvent.maxParticipants">
+                    
+                  </td>
+                  <td class="text-center">
+                    <div ngbButtonLabel  placement="bottom-center">
+                      <button class="delete-event" (click)="deleteEvent(event.id)">Delete</button> 
+                    </div>
+                    <div ngbButtonLabel  placement="bottom-center">
+                      <button *ngIf="eventToEdit == event.id" class="edit-event" (click)="updateEvent(event.id)">confirm</button>
+                      <button *ngIf="eventToEdit != event.id"  class="edit-event" (click)="selectEventToEdit(event.id)">edit</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              
           </table>
         </div> 
 
@@ -102,6 +138,5 @@
       </div>
     </div>
   </div> 
-
 
 

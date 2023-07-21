@@ -11,8 +11,8 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
-  getAllEvent(): Observable<HttpResponse<Event[]>> {
-    return this.http.get<Event[]>(this.apiUrl,{ observe: 'response' });
+  getAllEvent(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiUrl);
   }
 
   getEventById(id: string): Observable<HttpResponse<Event>> {
@@ -24,12 +24,12 @@ export class EventsService {
     return this.http.post<Event>(this.apiUrl, event,{ observe: 'response' });
   }
 
-  updateEvent(event: Event): Observable<HttpResponse<Event>> {
-    const url = `${this.apiUrl}/${event.id}`;
+  updateEvent(event: any,id: string): Observable<HttpResponse<Event>> {
+    const url = `${this.apiUrl}/${id}`;
     return this.http.put<Event>(url, event,{ observe: 'response' });
   }
 
-  deleteEvent(id: string): Observable<void> {
+  deleteEvent(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
   }

@@ -33,10 +33,10 @@ const routes: Routes =[
     ]
   }, 
   //new router here
-  {
-    path: 'create-event',
-    component:AddEventComponent //change this to create-event module
-  },
+  // {
+  //   path: 'create-event',
+  //   component:AddEventComponent //change this to create-event module
+  // },
   {
     path: '**',
     redirectTo: 'dashboard'

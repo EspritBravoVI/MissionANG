@@ -9,10 +9,13 @@ export interface Event {
   id: number;
   hostId?: number;
   supplierId?: number;
+  title?:String;
   location: string;
   dateEvent: Date;
   maxParticipants: number;
-   requestStatus?: ReqStatus;
+  longitude?: string;
+  latitude?: string;
+  requestStatus?: ReqStatus;
   description: string;
   participantsCount?: number;
   feedbacks?: Feedback[];
